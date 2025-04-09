@@ -1,20 +1,36 @@
-<!-- Navigation-->
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-secondary" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'navbar-l' %}" alt="..." /></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars ms-1"></i>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm" id="mainNav">
+    <div class="container-fluid px-4">
+
+        <!-- Left: Logo -->
+        <a class="navbar-brand d-flex align-items-center me-auto" href="{% url 'index' %}">
+            <img src="{% static 'images/navbar-logo.png' %}" alt="Bergen Tech Logo" height="36" class="me-2">
+            <span class="fw-semibold text-light fs-5">Bergen Tech</span>
+        </a>
+
+        <!-- Toggle for Mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+
+        <!-- Center: Navigation Links -->
+        <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase fw-semibold gap-2">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Teterboro Programs</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Admissions</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Counseling</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Student Resources</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Parent Resources</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Athletics</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Calendar</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Other Resources</a></li>
             </ul>
         </div>
+
     </div>
 </nav>
