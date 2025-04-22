@@ -52,3 +52,40 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+document.addEventListener('DOMContentLoaded', function() {
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const verticalMenu = document.getElementById('verticalCollapseMenu');
+        const menuButton = document.querySelector('[data-bs-target="#verticalCollapseMenu"]');
+        
+        // If the menu is open and click is outside the menu and not on the menu button
+        if (verticalMenu.classList.contains('show') && 
+            !verticalMenu.contains(event.target) && 
+            event.target !== menuButton && 
+            !menuButton.contains(event.target)) {
+            
+            // Create a new bootstrap collapse instance and hide it
+            const bsCollapse = bootstrap.Collapse.getInstance(verticalMenu);
+            if (bsCollapse) {
+                bsCollapse.hide();
+            }
+        }
+    });
+
+    // Ensure menu stays visible when scrolling
+    const navHeight = document.getElementById('mainNav').offsetHeight;
+    
+    // Update the vertical menu position as you scroll
+    function updateMenuPosition() {
+        const verticalMenuContainer = document.querySelector('.vertical-menu-container');
+        verticalMenuContainer.style.top = navHeight + 'px';
+        verticalMenuContainer.style.maxHeight = `calc(100vh - ${navHeight}px)`;
+    }
+    
+    // Initial position update
+    updateMenuPosition();
+    
+    // Update position on scroll (useful if navbar height changes on scroll)
+    window.addEventListener('scroll', updateMenuPosition);
+    window.addEventListener('resize', updateMenuPosition);
+});

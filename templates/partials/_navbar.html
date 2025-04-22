@@ -5,8 +5,8 @@
     <div class="container-fluid px-4">
 
         <!-- Left: Logo -->
-        <a class="navbar-brand d-flex align-items-center me-auto" href="{% url 'index' %}">
-            <img src="{% static 'images/navbar-logo.png' %}" alt="Bergen Tech Logo" height="36" class="me-2">
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+            <img src="static/img/ravi.png" alt="Bergen Tech Logo" width="45" height="45" class="me-2">
             <span class="fw-semibold text-light fs-5">Bergen Tech</span>
         </a>
 
@@ -16,21 +16,53 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Center: Navigation Links -->
-        <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
+        <!-- Right: Navigation Links -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase fw-semibold gap-2">
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Teterboro Programs</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Admissions</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Counseling</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Student Resources</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Parent Resources</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Athletics</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Calendar</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Other Resources</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Search</a></li>
+                <!-- Menu Button for Vertical Collapse -->
+                <li class="nav-item">
+                    <button class="nav-link btn" type="button" data-bs-toggle="collapse" 
+                            data-bs-target="#verticalCollapseMenu" aria-expanded="false" 
+                            aria-controls="verticalCollapseMenu">
+                        Menu <i class="bi bi-chevron-down ms-1"></i>
+                    </button>
+                </li>
             </ul>
         </div>
-
     </div>
 </nav>
+
+<!-- Vertical Floating Menu -->
+<div class="vertical-menu-container">
+    <div class="collapse" id="verticalCollapseMenu" style="min-height: 120px;">
+        <div class="card card-body bg-dark text-light border-0 shadow vertical-menu">
+            <div class="mb-4">
+                <h6 class="text-uppercase special-gothic-expanded-one-regular mb-3">Main Menu</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-decoration-none text-light special-gothic-expanded-one-regular">Home</a></li>
+                    <li class="mb-2"><a href="#" class="text-decoration-none text-light special-gothic-expanded-one-regular">About Us</a></li>
+                    <li class="mb-2"><a href="#" class="text-decoration-none text-light special-gothic-expanded-one-regular">Teterboro Programs</a></li>
+                </ul>
+            </div>
+            
+            <div class="mb-4">
+                <h6 class="text-uppercase special-gothic-expanded-one-regular mb-3">Student Resources</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-decoration-none text-light special-gothic-expanded-one-regular">Admissions</a></li>
+                    <li class="mb-2"><a href="#" class="text-decoration-none text-light special-gothic-expanded-one-regular">Counseling</a></li>
+                    <li class="mb-2"><a href="#" class="text-decoration-none text-light special-gothic-expanded-one-regular">Athletics</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h6 class="text-uppercase special-gothic-expanded-one-regular mb-3">Additional Resources</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-decoration-none text-light special-gothic-expanded-one-regular">Parent Resources</a></li>
+                    <li class="mb-2"><a href="#" class="text-decoration-none text-light special-gothic-expanded-one-regular">Calendar</a></li>
+                    <li class="mb-2"><a href="#" class="text-decoration-none text-light special-gothic-expanded-one-regular">Other Resources</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

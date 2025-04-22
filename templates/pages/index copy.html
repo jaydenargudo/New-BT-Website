@@ -1,42 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<section class="page-section" id="carousel">
-<div id="homeCarousel" class="carousel slide">
-    <div class"carousel-indicators">
-        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="static/img/ravi.png" class="d-block w-100" alt="...">
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-</section>
-<!-- Masthead-->
-<header class="masthead">
-    <style>
-        .box {
-            background-image: url('static/img/Bergen-County-Vocational-School-0000.jpg');
-            height: 1000px;
-        }
-    </style>
-    <div class="container box">
-        <div class="masthead-subheading" style="color:black;">Welcome To</div>
-        <div class="masthead-heading text-uppercase" style = "color:black;">Bergen Tech Teterboro</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="#services">Learn More</a>
-    </div>
-</header>
 <section class="page-section" id="services">
     <div class="container">
         <div class="text-center">
@@ -47,7 +11,7 @@
             <div class="col-md-4">
                 <span class="fa-stack fa-4x">
                     <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                    <i class="bi bi-award-fill fa-stack-1x fa-inverse" style="position: relative; top: 4px;"></i>
+                    <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                 </span>
                 <h4 class="my-3">Ranking</h4>
                 <p class="text-muted">Bergen County Technical High School - Teterboro is ranked seventh within New Jersey and ranked #90 nationally. The total minority enrollment is 63%, and 9% of students are economically disadvantaged.</p>
@@ -63,7 +27,7 @@
             <div class="col-md-4">
                 <span class="fa-stack fa-4x">
                     <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                    <i class="bi bi-house-door-fill fa-stack-1x fa-inverse" style="position: relative; top: 4px;"></i>
+                    <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
                 </span>
                 <h4 class="my-3">Address</h4>
                 <p class="text-muted">504 US-46, Teterboro, NJ 07608</p>
@@ -82,7 +46,7 @@
             <div class="col-lg-4 col-sm-6 mb-4">
                 <!-- Portfolio item 1-->
                 <div class="portfolio-item">
-                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1" alt="Por">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>

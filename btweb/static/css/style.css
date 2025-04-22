@@ -11314,4 +11314,67 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+.special-gothic-expanded-one-regular {
+  font-family: "Special Gothic Expanded One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
+/* Position the vertical floating menu */
+.vertical-menu-container {
+  position: fixed;
+  top: 56px; /* Adjust based on your navbar height */
+  right: 0;
+  z-index: 1029;
+  max-height: calc(100vh - 56px); /* Ensures menu doesn't extend past viewport */
+  overflow-y: auto; /* Allows scrolling if menu is too long */
+}
+
+/* Make the card only as wide as needed */
+.vertical-menu {
+  border-radius: 0 0 0 8px !important; /* Rounded only on bottom-left corner */
+  padding: 1.5rem;
+  width: auto; /* Only as wide as content needs */
+  max-width: 280px; /* Maximum width */
+  display: inline-block; /* Allow it to shrink to content */
+}
+
+/* Menu animations */
+#verticalCollapseMenu {
+  transition: height 0.35s ease;
+}
+
+/* Add hover effects for menu items */
+.vertical-menu a:hover {
+  color: #adb5bd !important;
+  transition: color 0.2s ease;
+}
+
+/* Make menu items more prominent */
+.vertical-menu a {
+  white-space: nowrap; /* Prevent text wrapping */
+  font-size: 1.05rem;
+  padding: 0.25rem 0;
+  display: block;
+}
+
+/* Headers */
+.vertical-menu h6 {
+  white-space: nowrap; /* Prevent text wrapping */
+  color: #adb5bd;
+  border-bottom: 1px solid #495057;
+  padding-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .vertical-menu {
+      max-width: none; /* Remove max width */
+      width: 100%; /* Full width on small screens */
+      border-radius: 0 !important;
+  }
+  
+  .vertical-menu a, .vertical-menu h6 {
+      white-space: normal; /* Allow wrapping on mobile */
+  }
+}
