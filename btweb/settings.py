@@ -18,16 +18,19 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 from dotenv import load_dotenv
+# Load environment variables from .env file
+load_dotenv()
+
 DB_PASSWORD = os.getenv('DB_PASSWORD')
 DB_HOST = os.getenv('DB_HOST')
-SECRET_KEY = config('DJANGO_SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+SECRET_KEY = os.getenv('SECRET_KEY')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0judyoj!n5$ac5qfyd=(sfj8r8-0kahcwi&!%@z-pt%r$mo$^v'
+SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -81,13 +84,18 @@ WSGI_APPLICATION = 'btweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# from decouple import config
+
+# DEBUG = config('DEBUG', cast=bool)
+# SECRET_KEY = config('SECRET_KEY')
+
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
 
 DATABASES = {
     'default': {
