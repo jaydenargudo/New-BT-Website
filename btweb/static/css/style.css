@@ -11378,3 +11378,37 @@ section#contact form#contactForm :-ms-input-placeholder {
       white-space: normal; /* Allow wrapping on mobile */
   }
 }
+
+/* Navbar Base */
+#mainNavbar {
+  transition: background-color 0.3s, padding 0.3s;
+  background-color: transparent;
+}
+
+/* Navbar Solid */
+.navbar-scrolled {
+  background-color: #000; /* Solid black */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* School Name Style */
+.school-name {
+  font-family: 'Roboto', sans-serif; /* clean technical font */
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: white;
+}
+
+/* Navbar Buttons */
+.nav-btn {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+}
+
+/* Make sure buttons are flush to the right */
+.d-flex {
+  gap: 0.5rem;
+}

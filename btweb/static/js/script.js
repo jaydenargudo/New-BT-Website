@@ -89,3 +89,24 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', updateMenuPosition);
     window.addEventListener('resize', updateMenuPosition);
 });
+
+// Navbar scroll behavior
+let lastScrollTop = 0;
+const navbar = document.getElementById('mainNavbar');
+
+window.addEventListener('scroll', function() {
+    let scrollTop = window.scrollY;
+
+    if (scrollTop === 0) {
+        navbar.classList.remove('navbar-scrolled');
+    } else if (scrollTop > lastScrollTop) {
+        // scrolling down
+        navbar.style.top = "-80px"; // hide navbar
+    } else {
+        // scrolling up
+        navbar.style.top = "0";
+        navbar.classList.add('navbar-scrolled');
+    }
+
+    lastScrollTop = scrollTop;
+});
