@@ -11414,7 +11414,7 @@ section#contact form#contactForm :-ms-input-placeholder {
 }
 
 .box {
-  background-image: url("/static/img/Bergen-County-Vocational-School-0000(1).jpg");
+  background-image: url("img/Bergen-County-Vocational-School-0000(1).jpg");
   background-size: cover;
   background-position: center;
   height: 1000px;
@@ -11422,4 +11422,11 @@ section#contact form#contactForm :-ms-input-placeholder {
 
 .masthead-subheading, .masthead-heading {
   color: black;
+}
+
+
+.bgimage {
+  background-size: cover;
+  background-position: center;
+  height: 1000px;
 }

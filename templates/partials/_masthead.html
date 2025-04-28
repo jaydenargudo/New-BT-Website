@@ -1,15 +1,16 @@
-<!-- Masthead-->
-{% load static %}
+<!-- Masthead -->
+ {%load static %}
 <header class="masthead">
-    <style>
-        .box {
-            background-image: url('static/img/Bergen-County-Vocational-School-0000.jpg');
-            height: 1000px;
-        }
-    </style>
-    <div class="container box">
-        <div class="masthead-subheading" style="color:black;">Welcome To</div>
-        <div class="masthead-heading text-uppercase" style = "color:black;">Bergen Tech Teterboro</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="#services">Learn More</a>
+    <div class="masthead-container position-relative">
+        <div class="masthead-bg">
+            <img src="{% static 'img/Bergen-County-Vocational-School-0000 (1).jpg' %}" alt="Bergen County Vocational School" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="container h-100 d-flex flex-column justify-content-center position-relative z-index-1">
+            <div class="masthead-content text-center">
+                <div class="masthead-subheading">Welcome To</div>
+                <div class="masthead-heading text-uppercase">Bergen Tech Teterboro</div>
+                <a class="btn btn-primary btn-xl text-uppercase mt-4" href="#services">Learn More</a>
+            </div>
+        </div>
     </div>
 </header>
