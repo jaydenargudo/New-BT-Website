@@ -1,59 +1,166 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #212529;">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="{% static 'img/bergentechlogo.png' %}" alt="Logo" width="40" height="40" class="me-2"></a>
-        <a class="navbar-brand justify-content-left" href="#page-top">Bergen Tech</a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="bi bi-list"></i>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto align-items-center">
-
-                <!-- Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Menu
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'index' %}">Home</a></li>
-                        <li><a class="dropdown-item" href="#services">Services</a></li>
-                        <li><a class="dropdown-item" href="#about">About</a></li>
-                        <li><a class="dropdown-item" href="#contact">Contact</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        {% if user.is_authenticated %}
-                            <li>
-                                <a class="dropdown-item" href="javascript:{document.getElementById('logout-form').submit()}">
-                                    <i class="fas fa-sign-out-alt"></i> Logout
-                                </a>
-                                <form id="logout-form" method="POST" action="{% url 'logout' %}" style="display: none;">
-                                    {% csrf_token %}
-                                </form>
-                            </li>
-                        {% else %}
-                            <li><a class="dropdown-item" href="{% url 'login' %}">
-                                <i class="fas fa-sign-in-alt"></i> Login
-                            </a></li>
-                            <li><a class="dropdown-item" href="{% url 'register' %}">
-                                <i class="fas fa-user-plus"></i> Register
-                            </a></li>
-                        {% endif %}
-                    </ul>
-                </li>
-
-                <!-- Search Button -->
-                {% comment %} <li class="nav-item">
-                    <form class="d-flex" role="search" method="GET" action="{% url 'search' %}">
-                        <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-light" type="submit">Search</button>
-                    </form>
-                </li> {% endcomment %}
-
-            </ul>
-        </div>
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center me-auto" href="#" style="margin-right: auto;">
+      <img src="{% static 'img/bergentechlogo.png' %}" alt="Logo" width="40" height="40" class="me-2">
+      <span class="school-name">BERGEN TECH</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="menuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Menu
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end styled-dropdown" id="customDropdown" aria-labelledby="menuDropdown">
+            <li><h6 class="dropdown-header">Student Resources</h6></li>
+            <li><a class="dropdown-item" href="#services">Services</a></li>
+            <li><a class="dropdown-item" href="#about">About</a></li>
+            <li><h6 class="dropdown-header">Parent Resources</h6></li>
+            <li><a class="dropdown-item" href="#contact">Contact</a></li>
+            <li><a class="dropdown-item" href="{% url 'index' %}">Home</a></li>
+            <li><h6 class="dropdown-header">More</h6></li>
+            {% if user.is_authenticated %}
+              <li><a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+              <form action="{% url 'logout' %}" method="POST" id="logout" style="display: none;">{% csrf_token %}</form>
+            {% else %}
+              <li><a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+              <li><a class="dropdown-item" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Register</a></li>
+            {% endif %}
+          </ul>
+        </li>
+        <li class="nav-item">
+          <div class="search-container">
+            <button class="btn btn-outline-light search-button" id="searchToggle" type="button"><i class="bi bi-search"></i></button>
+            <form id="searchForm" class="search-form">
+              <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            </form>
+          </div>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
+
+<!-- GSAP Animation Script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const navbar = document.getElementById('mainNav');
+    let lastScrollTop = 0;
+    let isNavbarHidden = false;
+
+    window.addEventListener("scroll", function () {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (scrollTop > lastScrollTop && !isNavbarHidden) {
+    // Scroll Down → Hide
+    gsap.to(navbar, { top: "-100px", duration: 0.4, ease: "power2.out" });
+    isNavbarHidden = true;
+  } else if (scrollTop < lastScrollTop && isNavbarHidden) {
+    // Scroll Up → Show
+    gsap.to(navbar, { top: "0px", duration: 0.4, ease: "power2.out" });
+    isNavbarHidden = false;
+  }
+  
+
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+
+
+    const searchToggle = document.getElementById('searchToggle');
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = searchForm.querySelector('input');
+    let isExpanded = false;
+
+    searchToggle.addEventListener('click', () => {
+      if (!isExpanded) {
+        searchForm.style.display = 'inline-block';
+        gsap.fromTo(searchForm, { width: 0, opacity: 0 }, { width: '200px', opacity: 1, duration: 0.4 });
+        searchInput.focus();
+      } else {
+        gsap.to(searchForm, { width: 0, opacity: 0, duration: 0.4, onComplete: () => searchForm.style.display = 'none' });
+      }
+      isExpanded = !isExpanded;
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!searchForm.contains(event.target) && !searchToggle.contains(event.target)) {
+        if (isExpanded) {
+          gsap.to(searchForm, { width: 0, opacity: 0, duration: 0.4, onComplete: () => searchForm.style.display = 'none' });
+          isExpanded = false;
+        }
+      }
+    });
+    const threshold = 5;
+if (scrollTop - lastScrollTop > threshold && !isNavbarHidden) {
+  // hide navbar
+} else if (lastScrollTop - scrollTop > threshold && isNavbarHidden) {
+  // show navbar
+}
+
+
+    // Animate dropdown
+    const dropdown = document.getElementById('customDropdown');
+    const menuDropdown = document.getElementById('menuDropdown');
+    menuDropdown.addEventListener('click', function (e) {
+      setTimeout(() => {
+        gsap.fromTo(dropdown, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.3 });
+      }, 0);
+    });
+  });
+</script>
+
+<style>
+  .navbar-shrink {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: #212529;
+    transition: all 0.3s ease;
+  }
+  .navbar {
+    transition: all 0.3s ease;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1030;
+  }
+  .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .search-button {
+    z-index: 2;
+  }
+  .search-form {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 10px;
+    display: none;
+    transition: all 0.3s ease;
+  }
+  .styled-dropdown {
+    background-color: #343a40;
+    border: 1px solid #444;
+  }
+  .styled-dropdown .dropdown-item {
+    color: #f8f9fa;
+  }
+  .styled-dropdown .dropdown-item:hover {
+    background-color: #495057;
+    color: #fff;
+  }
+  .styled-dropdown .dropdown-header {
+    color: #ffc107;
+    font-size: 0.9rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid #555;
+    margin-bottom: 0.25rem;
+  }
+</style>
