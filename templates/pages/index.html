@@ -274,7 +274,15 @@
 
 {% comment %} Announcements {% endcomment %}
 <section class="page-section" id="announcements">
+    {% comment %} <p style="color: red;">DEBUG: Number of announcements: {{ announcements|length }}</p>
+    <p>Test message from view: {{ test_message }}</p>
+    <p style="color: red;">DEBUG: Template is being rendered!</p>
     <p style="color: red;">DEBUG: Number of announcements: {{ announcements|length }}</p>
+    {% if announcement in announcements%}
+    <h3>HAPPY HAPPY HAPPY</h3>
+    {% else %}
+    <h3>DAMNIT</h3>
+    {% endif %} {% endcomment %}
     {% for announcement in announcements %}
     <div class="announcement">
         <h3>{{ announcement.title }}</h3>
