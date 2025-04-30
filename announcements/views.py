@@ -3,5 +3,9 @@ from .models import Announcement
 
 # Create your views here
 def announcement(request):
-    announcements = Announcement.objects.filter().order_by('-created_at')
-    return render(request, 'index.html', {'announcements': announcements})
+    announcements = Announcement.objects.filter(is_active=True).order_by('-created_at')
+    print("DEBUG: Announcements count =", announcements.count())
+    return render(request, 'pages/index.html', {
+        'announcements': announcements,
+        'test_message': 'Hello from the view!',
+    })
