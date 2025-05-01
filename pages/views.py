@@ -19,3 +19,5 @@ def index(request):
     }
     
     return render(request, 'pages/index.html', context)
+def staff(request):
+    return render(request, 'pages/staff.html')
