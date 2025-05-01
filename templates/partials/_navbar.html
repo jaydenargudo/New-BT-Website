@@ -24,6 +24,11 @@
           </a>
           <div class="fullscreen-dropdown dropdown-menu-end styled-dropdown" id="customDropdown" aria-labelledby="menuDropdown">
             <button class="close-dropdown" id="closeDropdown">Close ✕</button>
+            <div class="dropdown-logo">
+              <img src="{% static 'img/bergentechlogo.png' %}" alt="Logo">
+              <span>BERGEN TECH</span>
+            </div>
+            
             <div class="dropdown-columns">
               <div class="dropdown-left">
                 <a class="dropdown-link" href="#" data-section="academics">Academics</a>
@@ -37,6 +42,12 @@
                 <!-- Content will be injected here -->
               </div>
             </div>
+            <div class="quick-links">
+              <span>Quick Links</span>
+              <a href="#">Calendar</a>
+              <a href="#">Contact</a>
+              <a href="#">Apply</a>
+            </div>            
           </div>
         </li>
       </ul>
@@ -46,99 +57,129 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Existing navbar scroll and search scripts ...
+document.addEventListener('DOMContentLoaded', function () {
+  // --- Search Animation ---
+  const searchToggle = document.getElementById('searchToggle');
+  const searchForm = document.getElementById('searchForm');
+  let searchOpen = false;
 
-    const menuDropdown = document.getElementById('menuDropdown');
-    const dropdown = document.getElementById('customDropdown');
-    const closeDropdown = document.getElementById('closeDropdown');
-    let isDropdownVisible = false;
+  searchToggle.addEventListener('click', () => {
+    if (!searchOpen) {
+      searchForm.style.display = 'flex';
+      gsap.fromTo(searchForm, { width: 0, opacity: 0 }, { width: 200, opacity: 1, duration: 0.3, ease: 'power2.out' });
+    } else {
+      gsap.to(searchForm, { width: 0, opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: () => {
+        searchForm.style.display = 'none';
+      }});
+    }
+    searchOpen = !searchOpen;
+  });
 
-    menuDropdown.addEventListener('click', function (e) {
-      e.preventDefault();
-      if (!isDropdownVisible) {
-        dropdown.style.display = 'flex';
-        gsap.fromTo(dropdown, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out' });
-      } else {
-        gsap.to(dropdown, { opacity: 0, duration: 0.5, ease: 'power2.in', onComplete: () => dropdown.style.display = 'none' });
-      }
-      isDropdownVisible = !isDropdownVisible;
-    });
+  // --- Dropdown Open/Close Logic ---
+  const menuDropdown = document.getElementById('menuDropdown');
+  const dropdown = document.getElementById('customDropdown');
+  const closeDropdown = document.getElementById('closeDropdown');
+  let isDropdownVisible = false;
 
-    closeDropdown.addEventListener('click', () => {
+  menuDropdown.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (!isDropdownVisible) {
+      dropdown.style.display = 'flex';
+      gsap.fromTo(dropdown, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+    } else {
+      gsap.to(dropdown, { opacity: 0, duration: 0.5, onComplete: () => dropdown.style.display = 'none' });
+    }
+    isDropdownVisible = !isDropdownVisible;
+  });
+
+  closeDropdown.addEventListener('click', () => {
+    if (isDropdownVisible) {
+      gsap.to(dropdown, { opacity: 0, duration: 0.5, onComplete: () => dropdown.style.display = 'none' });
+      isDropdownVisible = false;
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target) && !menuDropdown.contains(e.target)) {
       if (isDropdownVisible) {
-        gsap.to(dropdown, { opacity: 0, duration: 0.5, ease: 'power2.in', onComplete: () => dropdown.style.display = 'none' });
+        gsap.to(dropdown, { opacity: 0, duration: 0.5, onComplete: () => dropdown.style.display = 'none' });
         isDropdownVisible = false;
       }
-    });
+    }
+  });
 
-    document.addEventListener('click', (e) => {
-      if (!dropdown.contains(e.target) && !menuDropdown.contains(e.target)) {
-        if (isDropdownVisible) {
-          gsap.to(dropdown, { opacity: 0, duration: 0.5, ease: 'power2.in', onComplete: () => dropdown.style.display = 'none' });
-          isDropdownVisible = false;
-        }
+  // --- Injected Content Animation ---
+  const contentMap = {
+    academics: {
+      title: 'Academics →',
+      description: 'Learning at Bergen Tech can happen for every type of learner, at any phase of life.',
+      links: ['Degree programs →', 'Professional and Lifelong Learning', 'BT Online', 'BT Schools →']
+    },
+    campus: {
+      title: 'Campus →',
+      description: 'Explore student life, activities, clubs, and housing on campus.',
+      links: ['Clubs', 'Athletics', 'Dining & Housing']
+    },
+    focus: {
+      title: 'In Focus →',
+      description: 'Spotlights on BT achievements, innovation, and community impact.',
+      links: ['Spotlights', 'Events', 'Student Stories']
+    },
+    visit: {
+      title: 'Visit →',
+      description: 'Schedule a visit or explore BT virtually before you apply.',
+      links: ['Campus Tour', 'Open House Dates', 'Virtual Tour']
+    },
+    about: {
+      title: 'About →',
+      description: 'Get to know Bergen Tech’s mission, history, and values.',
+      links: ['Mission & Vision', 'History', 'Leadership']
+    },
+    news: {
+      title: 'News →',
+      description: 'Catch up on the latest happenings at Bergen Tech.',
+      links: ['Announcements', 'BT Times', 'Student Blogs']
+    }
+  };
+
+  const detailPanel = document.getElementById('dropdownDetails');
+  const headerLinks = document.querySelectorAll('.dropdown-link');
+
+  headerLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Animate underline on active link
+      headerLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+
+      const section = link.getAttribute('data-section');
+      const content = contentMap[section];
+
+      if (content) {
+        detailPanel.innerHTML = `
+          <h5><strong>${content.title}</strong></h5>
+          <p>${content.description}</p>
+          <ul class="sub-links">
+            ${content.links.map(text => `<li><a href="#">${text}</a></li>`).join('')}
+          </ul>
+        `;
+
+        // Animate in lines
+        const lines = detailPanel.querySelectorAll('p, .sub-links li');
+        gsap.fromTo(lines, { opacity: 0, y: 10 }, {
+          opacity: 1,
+          y: 0,
+          stagger: 0.05,
+          duration: 0.2,
+          ease: 'power2.out'
+        });
       }
-    });
-
-    // Section content logic
-    const contentMap = {
-      academics: {
-        title: 'Academics →',
-        description: 'Learning at Bergen Tech can happen for every type of learner, at any phase of life.',
-        links: [
-          'Degree programs →',
-          'Professional and Lifelong Learning',
-          'BT Online',
-          'BT Schools →'
-        ]
-      },
-      campus: {
-        title: 'Campus →',
-        description: 'Explore student life, activities, clubs, and housing on campus.',
-        links: ['Clubs', 'Athletics', 'Dining & Housing']
-      },
-      focus: {
-        title: 'In Focus →',
-        description: 'Spotlights on BT achievements, innovation, and community impact.',
-        links: ['Spotlights', 'Events', 'Student Stories']
-      },
-      visit: {
-        title: 'Visit →',
-        description: 'Schedule a visit or explore BT virtually before you apply.',
-        links: ['Campus Tour', 'Open House Dates', 'Virtual Tour']
-      },
-      about: {
-        title: 'About →',
-        description: 'Get to know Bergen Tech’s mission, history, and values.',
-        links: ['Mission & Vision', 'History', 'Leadership']
-      },
-      news: {
-        title: 'News →',
-        description: 'Catch up on the latest happenings at Bergen Tech.',
-        links: ['Announcements', 'BT Times', 'Student Blogs']
-      }
-    };
-
-    const detailPanel = document.getElementById('dropdownDetails');
-    document.querySelectorAll('.dropdown-link').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const section = e.target.getAttribute('data-section');
-        const content = contentMap[section];
-        if (content) {
-          detailPanel.innerHTML = `
-            <h5><strong>${content.title}</strong></h5>
-            <p>${content.description}</p>
-            <ul class="sub-links">
-              ${content.links.map(text => `<li><a href="#">${text}</a></li>`).join('')}
-            </ul>
-          `;
-        }
-      });
     });
   });
+});
 </script>
+
 
 <style>
   .navbar-shrink {
@@ -236,4 +277,104 @@
   .sub-links a:hover {
     text-decoration: underline;
   }
+  /* --- Search and Menu Button Styling --- */
+.search-button, #menuDropdown {
+  border: 1px solid white;
+  border-radius: 0;
+}
+
+/* --- Search Expand Animation Styling --- */
+.search-form {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background-color: #212529;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* --- Adjust Injected Content Layout --- */
+.dropdown-right {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateY(40px);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- Larger dropdown link text --- */
+.dropdown-link {
+  font-size: 2.75rem;
+}
+
+/* --- Underline animation for headers --- */
+.dropdown-link::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: white;
+  width: 0;
+  transition: width 0.3s ease, transform 0.3s ease;
+  transform-origin: left;
+}
+
+.dropdown-link.active::after {
+  width: 100%;
+}
+
+/* --- Injected text fade line-by-line --- */
+.dropdown-right p, .sub-links li {
+  opacity: 0;
+}
+
+/* --- Dropdown Logo in Top Left --- */
+.dropdown-logo {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdown-logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.dropdown-logo span {
+  font-weight: bold;
+  color: white;
+  font-size: 1.2rem;
+}
+
+/* --- Quick Links Section --- */
+.quick-links {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #333;
+  color: #888;
+}
+
+.quick-links span {
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.quick-links a {
+  color: white;
+  font-weight: bold;
+  margin-right: 1rem;
+  text-decoration: none;
+}
+
+.quick-links a:hover {
+  text-decoration: underline;
+}
+
 </style>
