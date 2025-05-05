@@ -1,0 +1,204 @@
+
+{% load static %}
+<!-- navbar.html -->
+<nav class="main-navbar">
+  <div class="navbar-top">
+    <div class="logo">
+      <img src="{% static 'images/bergen-tech-logo.png' %}" alt="Bergen Tech Logo">
+      <span class="logo-text">BERGEN TECH</span>
+    </div>
+    <div class="nav-buttons">
+      <button id="searchToggle" class="nav-btn">Search</button>
+      <button id="menuToggle" class="nav-btn">Menu</button>
+    </div>
+  </div>
+
+  <div id="dropdownMenu" class="dropdown-menu">
+    <div class="dropdown-header">
+      <ul class="nav-links">
+        <li class="nav-link active" data-section="academics">Academics</li>
+        <li class="nav-link" data-section="campus">Campus</li>
+        <li class="nav-link" data-section="focus">In Focus</li>
+        <li class="nav-link" data-section="visit">Visit</li>
+        <li class="nav-link" data-section="about">About</li>
+        <li class="nav-link" data-section="news">News</li>
+      </ul>
+    </div>
+    <div class="dropdown-content">
+      <div class="section-content" id="academicsContent">
+        <h4>Academics →</h4>
+        <p>Learning at Bergen Tech can happen for every type of learner, at any phase of life.</p>
+        <ul>
+          <li><strong>Degree programs →</strong></li>
+          <li><strong>Professional and Lifelong Learning</strong></li>
+          <li><strong>BT Online</strong></li>
+          <li><strong>BT Schools →</strong></li>
+        </ul>
+      </div>
+      <!-- Other sections hidden by default -->
+    </div>
+
+    <div class="quick-links-bar"></div>
+    <div class="quick-links">
+      <span class="quick-links-label">Quick Links</span>
+      <a href="#">Calendar</a>
+      <a href="#">Contact</a>
+      <a href="#">Apply</a>
+    </div>
+
+    <button class="close-dropdown" id="closeDropdown">Close ×</button>
+  </div>
+
+  <div class="search-container" id="searchContainer">
+    <input type="text" class="search-bar" placeholder="Search...">
+  </div>
+</nav>
+
+<style>
+  .main-navbar {
+    font-family: 'Georgia', serif;
+    color: white;
+    background-color: #111;
+    padding: 1rem 2rem;
+    position: relative;
+  }
+  .navbar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo img {
+    height: 40px;
+    margin-right: 10px;
+  }
+  .logo-text {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  .nav-buttons .nav-btn {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 0;
+    padding: 0.4rem 0.8rem;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #111;
+    padding: 2rem;
+    z-index: 1000;
+  }
+  .dropdown-header {
+    float: left;
+    width: 25%;
+  }
+  .nav-links {
+    list-style: none;
+    padding: 0;
+  }
+  .nav-link {
+    font-size: 2rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    position: relative;
+  }
+  .nav-link.active::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: white;
+    width: 100%;
+    animation: underline-slide-in 0.3s ease-out forwards;
+  }
+  @keyframes underline-slide-in {
+    from { width: 0; left: 0; }
+    to { width: 100%; left: 0; }
+  }
+  .dropdown-content {
+    float: left;
+    width: 50%;
+    padding-left: 4%;
+    padding-top: 2rem;
+  }
+  .section-content {
+    display: none;
+    animation: fadeInLines 0.5s ease-out;
+  }
+  .section-content h4 {
+    font-size: 1.2rem;
+  }
+  @keyframes fadeInLines {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .quick-links-bar {
+    height: 1px;
+    background-color: #333;
+    clear: both;
+    margin-top: 2rem;
+  }
+  .quick-links {
+    padding-top: 1rem;
+    color: #777;
+  }
+  .quick-links a {
+    color: white;
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+  .search-container {
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
+    display: none;
+  }
+  .search-bar {
+    width: 0;
+    opacity: 0;
+    padding: 0.5rem;
+    transition: width 0.3s ease, opacity 0.3s ease;
+  }
+  .search-bar.active {
+    width: 200px;
+    opacity: 1;
+  }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  const searchToggle = document.getElementById('searchToggle');
+  const searchContainer = document.getElementById('searchContainer');
+  const searchBar = document.querySelector('.search-bar');
+  const menuToggle = document.getElementById('menuToggle');
+  const dropdown = document.getElementById('dropdownMenu');
+  const closeDropdown = document.getElementById('closeDropdown');
+  const links = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('.section-content');
+
+  searchToggle.addEventListener('click', () => {
+    searchContainer.style.display = 'block';
+    gsap.to(searchBar, { width: '200px', opacity: 1, duration: 0.3 });
+    searchBar.classList.add('active');
+  });
+
+  menuToggle.addEventListener('click', () => dropdown.style.display = 'block');
+  closeDropdown.addEventListener('click', () => dropdown.style.display = 'none');
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      links.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      const sectionId = link.dataset.section + 'Content';
+      sections.forEach(sec => sec.style.display = 'none');
+      const section = document.getElementById(sectionId);
+      if (section) section.style.display = 'block';
+    });
+  });
+</script>
