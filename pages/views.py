@@ -20,6 +20,7 @@ def index(request):
     }
     
     return render(request, 'pages/index.html', context)
+
 def staff_page(request):
     faculty_members = Faculty.objects.all()
     return render(request, 'pages/staff.html', {'faculty_members': faculty_members})
