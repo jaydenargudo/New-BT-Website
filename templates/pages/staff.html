@@ -1,1 +1,43 @@
 {% extends "base.html" %}
+{% block content %}
+<section class="bg-light py-5" id="faculty_members">
+    <div>howdy</div>
+    <br>
+    <h1>Faculty Members</h1>
+    <ul>
+        {% for member in faculty_members %}
+            <li><strong>{{ member }}</strong></li>
+            <ul>
+                <li>{{ member.description }}</li>
+                <li>Phone: {{ member.phone }}</li>
+                <li>Email: {{ member.email }}</li>
+            </ul>
+            
+        {% empty %}
+            <li>No faculty members found.</li>
+        {% endfor %}
+    </ul>
+  </section>
+{% endblock content %}
+
+{% comment %} <body>
+    <h1>Faculty Members</h1>
+    <ul>
+        {% for member in faculty_members %}
+            <li>
+                <strong>{{ member.name }}</strong>
+            </li>
+            <li>
+                {{member.description}}
+            </li>
+            <li>
+                phone: {{member.phone}}
+            </li>
+            <li>
+                email: {{member.email}}
+            </li>
+        {% empty %}
+            <li>No faculty members found.</li>
+        {% endfor %}
+    </ul>
+</body> {% endcomment %}

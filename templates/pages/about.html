@@ -1,1 +1,84 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 bg-light text-dark text-center" style="margin-top: 76px;"> <!-- Added margin-top -->
+  <div class="container">
+    <h1 class="display-4 fw-bold">About Bergen Tech</h1>
+    <p class="lead mt-3 mx-auto" style="max-width: 750px;">
+      Discover our mission, our community, and our commitment to preparing students for the challenges of tomorrow.
+    </p>
+  </div>
+</section>
+
+<!-- Image + Text Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="{% static 'images/campus.jpg' %}" class="img-fluid rounded" alt="Campus Photo">
+      </div>
+      <div class="col-md-6">
+        <h2 class="fw-bold">A Legacy of Innovation</h2>
+        <p class="mt-3">
+          Since its founding, Bergen Tech Teterboro has provided rigorous academic programs and specialized training to a diverse, high-achieving student body.
+        </p>
+        <p>
+          Our mission is to cultivate intellectual curiosity, critical thinking, and ethical leadership.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quote / Statistic Banner -->
+<section class="py-5 bg-dark text-white text-center">
+  <div class="container">
+    <blockquote class="blockquote">
+      <p class="mb-4 fs-3 fst-italic">"Excellence is not an act, but a habit."</p>
+      <footer class="blockquote-footer text-white-50">Aristotle</footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- Information Cards -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">Who We Are</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Our Mission</h5>
+            <p class="card-text">Empowering students to reach their potential through rigorous academics and real-world experience.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Our Campus</h5>
+            <p class="card-text">Located in Teterboro, NJ, our state-of-the-art campus offers labs, studios, and collaborative learning spaces.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Our Community</h5>
+            <p class="card-text">A diverse and vibrant group of students, faculty, and alumni dedicated to excellence and service.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-secondary text-white text-center">
+  <div class="container">
+    <h3 class="fw-bold">Learn More About Bergen Tech</h3>
+    {% comment %} <a href="{% url 'contact' %}" class="btn btn-outline-light mt-3 px-4 py-2">Contact Us</a> {% endcomment %}
+  </div>
+</section>
+{% endblock %}

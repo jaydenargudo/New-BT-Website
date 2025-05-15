@@ -11489,3 +11489,17 @@ section#contact form#contactForm :-ms-input-placeholder {
 .z-index-1 {
   z-index: 1;
 }
+
+body {
+  padding-top: 76px; /* Adjust this value based on your navbar height */
+}
+
+/* Alternative solution - apply to specific content blocks */
+.content-block {
+  margin-top: 76px; /* This should match your navbar height */
+}
+
+/* If you prefer to target just the first section or different pages differently */
+.first-section {
+  padding-top: 90px; /* A bit more padding for breathing room */
+}

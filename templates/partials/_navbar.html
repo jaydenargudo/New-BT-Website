@@ -34,7 +34,7 @@
                 <a class="dropdown-link" href="#" data-section="academics">Academics</a>
                 <a class="dropdown-link" href="#" data-section="campus">Campus</a>
                 <a class="dropdown-link" href="#" data-section="focus">In Focus</a>
-                <a class="dropdown-link" href="#" data-section="visit">Visit</a>
+                <a class="dropdown-link" href="{% url 'staff'%}" data-section="faculty">Faculty</a>
                 <a class="dropdown-link" href="#" data-section="about">About</a>
                 <a class="dropdown-link" href="#" data-section="news">News</a>
               </div>
@@ -44,7 +44,7 @@
             </div>
             <div class="quick-links">
               <span>Quick Links</span>
-              <a href="#">Calendar</a>
+              <a href="{% url 'staff'%}">Calendar</a>
               <a href="#">Contact</a>
               <a href="#">Apply</a>
               {% if user.is_authenticated %}
@@ -145,9 +145,11 @@ document.addEventListener('DOMContentLoaded', function () {
       links: ['Campus Tour', 'Open House Dates', 'Virtual Tour']
     },
     about: {
-      title: 'About →',
+      title: { text: 'About →', url: "{% url 'about' %}" },
       description: 'Get to know Bergen Tech’s mission, history, and values.',
-      links: ['Mission & Vision', 'History', 'Leadership']
+      links: [
+        { text: 'Staff List',      url: "{% url 'staff' %}" }
+      ]
     },
     news: {
       title: 'News →',
@@ -172,12 +174,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (content) {
         detailPanel.innerHTML = `
-          <h5><strong>${content.title}</strong></h5>
-          <p>${content.description}</p>
-          <ul class="sub-links">
-            ${content.links.map(text => `<li><a href="#">${text}</a></li>`).join('')}
-          </ul>
-        `;
+  <h5>
+  <strong>
+    <a href="${content.title.url}" class="title-link">${content.title.text}</a>
+  </strong>
+</h5>
+
+  <p>${content.description}</p>
+  <ul class="sub-links">
+    ${content.links
+       .map(link => `<li><a href="${link.url}">${link.text}</a></li>`)
+       .join('')}
+  </ul>
+`;
+
 
         // Animate in lines
         const lines = detailPanel.querySelectorAll('p, .sub-links li');
