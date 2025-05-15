@@ -6,12 +6,14 @@
     <h1>Faculty Members</h1>
     <ul>
         {% for member in faculty_members %}
-            <li><strong>{{ member }}</strong></li>
-            <ul>
-                <li>{{ member.description }}</li>
-                <li>Phone: {{ member.phone }}</li>
-                <li>Email: {{ member.email }}</li>
-            </ul>
+            <div class="card" style="width: 18rem">
+                <div class="card-body">
+                    <h5 style="card-title">{{member}}</h5>
+                    <p>{{member.description}}</p>
+                    <p>Phone: {{member.phone}}</p>
+                    <p>Email: {{member.email}}</p>
+                </div>
+            </div>
             
         {% empty %}
             <li>No faculty members found.</li>
