@@ -1,0 +1,127 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-black py-3 px-4">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center gap-3">
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'index'%}">
+        <img src="/static/img/bergentechlogo.png" alt="Bergen Tech" height="40">
+        <span class="ms-2 fs-4 fw-bold">Bergen Tech</span>
+      </a>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <button id="menuBtn" class="btn border-white text-white rounded-0 px-3">Menu</button>
+      <div class="position-relative">
+        <button id="searchBtn" class="btn border-white text-white rounded-0 px-3">Search</button>
+        <input type="text" id="searchInput" class="form-control bg-black text-white position-absolute end-0 mt-2 border-white rounded-0" placeholder="Search..." style="width: 0; opacity: 0; pointer-events: none; transition: all 0.4s ease;" />
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="dropdownMenu" class="position-fixed top-0 start-0 w-100 h-100 bg-black text-white d-none flex-column px-5 pt-4 overflow-auto" style="z-index: 1050;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex align-items-center gap-3">
+      <img src="/static/img/logo.png" alt="Bergen Tech" height="40">
+      <span class="fs-4 fw-bold">Bergen Tech</span>
+    </div>
+    <button id="closeDropdown" class="btn btn-outline-light rounded-0">Close</button>
+  </div>
+
+  <div class="row gy-5">
+    <div class="col-md-3">
+      <h5 class="dropdown-header-link mb-3 position-relative text-secondary" data-section="academics">Academics</h5>
+      <div class="dropdown-section-content d-none" id="section-academics">
+        <p class="fs-5 fw-bold">Programs</p>
+        <a href="#" class="d-block text-white mb-2">Computer Science</a>
+        <a href="#" class="d-block text-white mb-2">Engineering</a>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <h5 class="dropdown-header-link mb-3 position-relative text-secondary" data-section="admissions">Admissions</h5>
+      <div class="dropdown-section-content d-none" id="section-admissions">
+        <p class="fs-5 fw-bold">Application Info</p>
+        <a href="#" class="d-block text-white mb-2">Requirements</a>
+        <a href="#" class="d-block text-white mb-2">Open House</a>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <h5 class="dropdown-header-link mb-3 position-relative text-secondary" data-section="life">Student Life</h5>
+      <div class="dropdown-section-content d-none" id="section-life">
+        <p class="fs-5 fw-bold">Activities</p>
+        <a href="#" class="d-block text-white mb-2">Clubs</a>
+        <a href="#" class="d-block text-white mb-2">Events</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5 pt-3 border-top border-secondary">
+    <p class="text-secondary mb-2">Quick Links &gt;</p>
+    <a href="#" class="d-block fw-bold text-white mb-2">Calendar</a>
+    <a href="#" class="d-block fw-bold text-white mb-2">Parent Portal</a>
+    <a href="#" class="d-block fw-bold text-white mb-2">Staff Directory</a>
+  </div>
+</div>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const searchBtn = document.getElementById('searchBtn');
+  const searchInput = document.getElementById('searchInput');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  const closeDropdown = document.getElementById('closeDropdown');
+  const sectionHeaders = document.querySelectorAll('.dropdown-header-link');
+
+  menuBtn.addEventListener('click', () => {
+    dropdownMenu.classList.remove('d-none');
+    gsap.fromTo(dropdownMenu, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+  });
+
+  closeDropdown.addEventListener('click', () => {
+    gsap.to(dropdownMenu, {
+      opacity: 0,
+      duration: 0.4,
+      onComplete: () => dropdownMenu.classList.add('d-none')
+    });
+  });
+
+  searchBtn.addEventListener('click', () => {
+    if (searchInput.style.opacity === '0') {
+      searchInput.style.width = '200px';
+      searchInput.style.opacity = '1';
+      searchInput.style.pointerEvents = 'auto';
+    } else {
+      searchInput.style.width = '0';
+      searchInput.style.opacity = '0';
+      searchInput.style.pointerEvents = 'none';
+    }
+  });
+
+  sectionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const target = header.dataset.section;
+      document.querySelectorAll('.dropdown-section-content').forEach(sec => sec.classList.add('d-none'));
+      document.getElementById('section-' + target).classList.remove('d-none');
+
+      sectionHeaders.forEach(h => {
+        h.classList.remove('text-white');
+        h.classList.add('text-secondary');
+        h.style.borderBottom = 'none';
+      });
+
+      header.classList.remove('text-secondary');
+      header.classList.add('text-white');
+      header.style.borderBottom = `2px solid white`;
+      header.style.width = `${header.textContent.length}ch`;
+    });
+
+    header.addEventListener('mouseenter', () => {
+      header.classList.remove('text-secondary');
+      header.classList.add('text-white');
+    });
+
+    header.addEventListener('mouseleave', () => {
+      if (!header.style.borderBottom) {
+        header.classList.add('text-secondary');
+        header.classList.remove('text-white');
+      }
+    });
+  });
+</script>

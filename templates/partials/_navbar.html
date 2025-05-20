@@ -28,7 +28,6 @@
               <img src="{% static 'img/bergentechlogo.png' %}" alt="Logo">
               <span>BERGEN TECH</span>
             </div>
-            
             <div class="dropdown-columns">
               <div class="dropdown-left">
                 <a class="dropdown-link" href="#" data-section="academics">Academics</a>
@@ -38,30 +37,24 @@
                 <a class="dropdown-link" href="#" data-section="about">About</a>
                 <a class="dropdown-link" href="#" data-section="news">News</a>
               </div>
-              <div class="dropdown-right" id="dropdownDetails">
-                <!-- Content will be injected here -->
-              </div>
+              <div class="dropdown-right" id="dropdownDetails"></div>
             </div>
             <div class="quick-links">
               <span>Quick Links</span>
-              <a href="{% url 'staff'%}">Faculty</a>
+              <a href="#">Calendar</a>
               <a href="#">Contact</a>
               <a href="#">Apply</a>
               {% if user.is_authenticated %}
-              <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-                <i class="fas fa-sign-out-alt"></i> Welcome {{user.username}} | Logout
-              </a>
-              <form action="{% url 'logout' %}" method="POST" id="logout">
-                {% csrf_token %}
-                <input type="hidden">
-              </form>
+                <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                  <i class="fas fa-sign-out-alt"></i> Welcome {{ user.username }} | Logout
+                </a>
+                <form action="{% url 'logout' %}" method="POST" id="logout">{% csrf_token %}</form>
               {% else %}
-              <a class="nav-link" href="{% url 'login' %}">
-                <i class="fas fa-sign-in-alt"></i>
-                Login
-              </a>
-    {% endif %}
-            </div>            
+                <a class="nav-link" href="{% url 'login' %}">
+                  <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+              {% endif %}
+            </div>
           </div>
         </li>
       </ul>
@@ -72,7 +65,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // --- Search Animation ---
   const searchToggle = document.getElementById('searchToggle');
   const searchForm = document.getElementById('searchForm');
   let searchOpen = false;
@@ -89,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function () {
     searchOpen = !searchOpen;
   });
 
-  // --- Dropdown Open/Close Logic ---
   const menuDropdown = document.getElementById('menuDropdown');
   const dropdown = document.getElementById('customDropdown');
   const closeDropdown = document.getElementById('closeDropdown');
@@ -122,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // --- Injected Content Animation ---
   const contentMap = {
     academics: {
       title: 'Academics →',
@@ -139,16 +129,11 @@ document.addEventListener('DOMContentLoaded', function () {
       description: 'Spotlights on BT achievements, innovation, and community impact.',
       links: ['Spotlights', 'Events', 'Student Stories']
     },
-    visit: {
-      title: 'Visit →',
-      description: 'Schedule a visit or explore BT virtually before you apply.',
-      links: ['Campus Tour', 'Open House Dates', 'Virtual Tour']
-    },
     about: {
       title: { text: 'About →', url: "{% url 'about' %}" },
       description: 'Get to know Bergen Tech’s mission, history, and values.',
       links: [
-        { text: 'Staff List',      url: "{% url 'staff' %}" }
+        { text: 'Staff List', url: "{% url 'staff' %}" }
       ]
     },
     news: {
@@ -164,8 +149,6 @@ document.addEventListener('DOMContentLoaded', function () {
   headerLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-
-      // Animate underline on active link
       headerLinks.forEach(l => l.classList.remove('active'));
       link.classList.add('active');
 
@@ -173,23 +156,21 @@ document.addEventListener('DOMContentLoaded', function () {
       const content = contentMap[section];
 
       if (content) {
-        detailPanel.innerHTML = `
-  <h5>
-  <strong>
-    <a href="${content.title.url}" class="title-link">${content.title.text}</a>
-  </strong>
-</h5>
+        let html = `<h5><strong>`;
+        if (typeof content.title === 'object') {
+          html += `<a href="${content.title.url}" class="title-link">${content.title.text}</a>`;
+        } else {
+          html += content.title;
+        }
+        html += `</strong></h5>`;
+        html += `<p>${content.description}</p>`;
+        html += `<ul class="sub-links">`;
+        html += (content.links || []).map(link =>
+          typeof link === 'string' ? `<li>${link}</li>` : `<li><a href="${link.url}">${link.text}</a></li>`
+        ).join('');
+        html += `</ul>`;
+        detailPanel.innerHTML = html;
 
-  <p>${content.description}</p>
-  <ul class="sub-links">
-    ${content.links
-       .map(link => `<li><a href="${link.url}">${link.text}</a></li>`)
-       .join('')}
-  </ul>
-`;
-
-
-        // Animate in lines
         const lines = detailPanel.querySelectorAll('p, .sub-links li');
         gsap.fromTo(lines, { opacity: 0, y: 10 }, {
           opacity: 1,
@@ -204,91 +185,32 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-
 <style>
-  .navbar-shrink {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    background-color: #212529;
-    transition: all 0.3s ease;
-  }
-  .navbar {
-    transition: all 0.3s ease;
-    top: 0;
-    position: fixed;
-    width: 100%;
-    z-index: 1030;
-  }
-  .search-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-  .search-button {
-    z-index: 2;
-  }
-  .fullscreen-dropdown {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #121212;
-    display: none;
-    flex-direction: column;
-    padding: 2rem;
-    z-index: 9999;
-    color: #fff;
-  }
-  .close-dropdown {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  .dropdown-columns {
-    display: flex;
-    flex-direction: row;
-    gap: 4rem;
-    padding-top: 3rem;
-  }
-  .dropdown-left {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .dropdown-link {
-    font-size: 2.5rem;
-    color: #ccc;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .dropdown-link:hover {
-    color: #fff;
-  }
-  .sub-links li {
-    list-style: none;
-    margin: 0.5rem 0;
-  }
-  .sub-links a {
-    color: #fff;
-    text-decoration: none;
-  }
-  .sub-links a:hover {
-    text-decoration: underline;
-  }
-  /* --- Search and Menu Button Styling --- */
+.navbar-shrink {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #212529;
+  transition: all 0.3s ease;
+}
+.navbar {
+  transition: all 0.3s ease;
+  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1030;
+}
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-button {
+  z-index: 2;
+}
 .search-button, #menuDropdown {
   border: 1px solid white;
   border-radius: 0;
 }
-
-/* --- Search Expand Animation Styling --- */
 .search-form {
   position: absolute;
   right: 0;
@@ -305,12 +227,50 @@ document.addEventListener('DOMContentLoaded', function () {
   white-space: nowrap;
   margin-left: 10px;
 }
-/* --- Larger dropdown link text --- */
+.fullscreen-dropdown {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #121212;
+  display: none;
+  flex-direction: column;
+  padding: 2rem;
+  z-index: 9999;
+  color: #fff;
+}
+.close-dropdown {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.dropdown-columns {
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+  padding-top: 3rem;
+}
+.dropdown-left {
+  flex: 0 1 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 .dropdown-link {
   font-size: 2.75rem;
+  color: #ccc;
+  text-decoration: none;
+  cursor: pointer;
 }
-
-/* --- Underline animation for headers --- */
+.dropdown-link:hover {
+  color: #fff;
+}
 .dropdown-link::after {
   content: "";
   display: block;
@@ -320,195 +280,8 @@ document.addEventListener('DOMContentLoaded', function () {
   transition: width 0.3s ease, transform 0.3s ease;
   transform-origin: left;
 }
-
 .dropdown-link.active::after {
   width: 100%;
-}
-
-/* --- Injected text fade line-by-line --- */
-.dropdown-right p, .sub-links li {
-  opacity: 0;
-}
-
-/* --- Dropdown Logo in Top Left --- */
-.dropdown-logo {
-  position: absolute;
-  top: 20px;
-  left: 40px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.dropdown-logo img {
-  width: 40px;
-  height: 40px;
-}
-
-.dropdown-logo span {
-  font-weight: bold;
-  color: white;
-  font-size: 1.2rem;
-}
-
-/* --- Quick Links Section --- */
-.quick-links {
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid #333;
-  color: #888;
-}
-
-.quick-links span {
-  font-weight: bold;
-  margin-right: 1rem;
-}
-
-.quick-links a {
-  color: white;
-  font-weight: bold;
-  margin-right: 1rem;
-  text-decoration: none;
-}
-
-.quick-links a:hover {
-  text-decoration: underline;
-}
-  .fullscreen-dropdown {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #121212;
-    display: none;
-    flex-direction: column;
-    padding: 2rem;
-    z-index: 9999;
-    color: #fff;
-  }
-  .close-dropdown {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  .dropdown-columns {
-    display: flex;
-    flex-direction: row;
-    gap: 4rem;
-    padding-top: 3rem;
-  }
-  .dropdown-left {
-    flex: 0 1 10%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .dropdown-link {
-    font-size: 2.5rem;
-    color: #ccc;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .dropdown-link:hover {
-    color: #fff;
-  }
-  .dropdown-right h5 {
-    font-size: 1.25rem;
-  }
-  .dropdown-right p {
-    color: #aaa;
-    max-width: 400px;
-  }
-  .sub-links li {
-    list-style: none;
-    margin: 0.5rem 0;
-  }
-  .sub-links a {
-    color: #fff;
-    text-decoration: none;
-  }
-  .sub-links a:hover {
-    text-decoration: underline;
-  }
-  /* --- Search and Menu Button Styling --- */
-.search-button, #menuDropdown {
-  border: 1px solid white;
-  border-radius: 0;
-}
-/* --- Larger dropdown link text --- */
-.dropdown-link {
-  font-size: 2.75rem;
-}
-
-/* --- Underline animation for headers --- */
-.dropdown-link::after {
-  content: "";
-  display: block;
-  height: 2px;
-  background: white;
-  width: 0;
-  transition: width 0.3s ease, transform 0.3s ease;
-  transform-origin: left;
-}
-
-.dropdown-link.active::after {
-  width: 100%;
-}
-
-/* --- Injected text fade line-by-line --- */
-.dropdown-right p, .sub-links li {
-  opacity: 0;
-}
-
-/* --- Dropdown Logo in Top Left --- */
-.dropdown-logo {
-  position: absolute;
-  top: 20px;
-  left: 40px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.dropdown-logo img {
-  width: 40px;
-  height: 40px;
-}
-
-.dropdown-logo span {
-  font-weight: bold;
-  color: white;
-  font-size: 1.2rem;
-}
-
-/* --- Quick Links Section --- */
-.quick-links {
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid #333;
-  color: #888;
-}
-
-.quick-links span {
-  font-weight: bold;
-  margin-right: 1rem;
-}
-
-.quick-links a {
-  color: white;
-  font-weight: bold;
-  margin-right: 1rem;
-  text-decoration: none;
-}
-
-.quick-links a:hover {
-  text-decoration: underline;
 }
 .dropdown-right {
   flex: 0 1 90%;
@@ -517,7 +290,63 @@ document.addEventListener('DOMContentLoaded', function () {
   justify-content: center;
   transform: translateY(40px);
   max-width: 600px;
-  margin-left: 80px; /* This moves it to the right */
+  margin-left: 80px;
 }
-
+.dropdown-right h5 {
+  font-size: 1.25rem;
+}
+.dropdown-right p {
+  color: #aaa;
+  max-width: 400px;
+}
+.dropdown-right p, .sub-links li {
+  opacity: 0;
+}
+.sub-links li {
+  list-style: none;
+  margin: 0.5rem 0;
+}
+.sub-links a {
+  color: #fff;
+  text-decoration: none;
+}
+.sub-links a:hover {
+  text-decoration: underline;
+}
+.dropdown-logo {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dropdown-logo img {
+  width: 40px;
+  height: 40px;
+}
+.dropdown-logo span {
+  font-weight: bold;
+  color: white;
+  font-size: 1.2rem;
+}
+.quick-links {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #333;
+  color: #888;
+}
+.quick-links span {
+  font-weight: bold;
+  margin-right: 1rem;
+}
+.quick-links a {
+  color: white;
+  font-weight: bold;
+  margin-right: 1rem;
+  text-decoration: none;
+}
+.quick-links a:hover {
+  text-decoration: underline;
+}
 </style>
