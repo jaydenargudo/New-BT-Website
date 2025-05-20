@@ -31,9 +31,9 @@
 
         <div class="col-md-4">
             <div class="card" style="width: 100%;">
-                <img src="{{ member.photo.url }}" class="card-img-top img-thumbnail" alt="{{ member.name }}" style="height: 300px; object-fit: cover;">
+                <img src="{{ member.photo.url }}" class="card-img-top img-thumbnail" alt="{{ member.first_name }}" style="height: 300px; object-fit: cover;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ member.name }}</h5>
+                    <h5 class="card-title">{{ member.first_name }} {{member.last_name}}</h5>
                     <p class="card-text">{{ member.description }}</p>
                     <p>Phone: {{ member.phone }}</p>
                     <p>Email: {{ member.email }}</p>
