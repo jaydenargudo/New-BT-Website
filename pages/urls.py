@@ -16,4 +16,5 @@ urlpatterns = [
     path('digital_media', views.digital_media, name = "digital_media"),
     path('fashion', views.fashion, name = "fashion"),
     path('law', views.law, name = "law"),
+    path('calender', views.calender, name="calender")
 ]

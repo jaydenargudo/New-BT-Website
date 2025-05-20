@@ -45,3 +45,5 @@ def fashion(request):
     return render(request, 'pages/fashion.html')
 def law(request):
     return render(request, 'pages/law.html')
+def calender(request):
+    return render(request, 'pages/calender.html')
