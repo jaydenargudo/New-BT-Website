@@ -33,7 +33,7 @@
                 <a class="dropdown-link" href="#" data-section="academics">Academics</a>
                 <a class="dropdown-link" href="#" data-section="campus">Campus</a>
                 <a class="dropdown-link" href="#" data-section="focus">In Focus</a>
-                <a class="dropdown-link" href="{% url 'staff'%}" data-section="faculty">Faculty</a>
+                <a class="dropdown-link" href="" data-section="faculty">Faculty</a>
                 <a class="dropdown-link" href="#" data-section="about">About</a>
                 <a class="dropdown-link" href="#" data-section="news">News</a>
               </div>
@@ -63,6 +63,7 @@
 </nav>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src=""></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const searchToggle = document.getElementById('searchToggle');
@@ -129,11 +130,18 @@ document.addEventListener('DOMContentLoaded', function () {
       description: 'Spotlights on BT achievements, innovation, and community impact.',
       links: ['Spotlights', 'Events', 'Student Stories']
     },
+    faculty: {
+      title: 'Faculty →',
+      description: 'Learn more about our amazing faculty that helps our students prosper and grow.',
+      links: [
+      { text: "Staff List", url: "{% url 'staff' %}"}
+      ]
+    },
     about: {
       title: { text: 'About →', url: "{% url 'about' %}" },
       description: 'Get to know Bergen Tech’s mission, history, and values.',
       links: [
-        { text: 'Staff List', url: "{% url 'staff' %}" }
+        { text: 'About Us', url: "{% url 'about' %}" }
       ]
     },
     news: {

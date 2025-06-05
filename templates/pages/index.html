@@ -211,34 +211,10 @@
 </section>
 
 {% comment %} Announcements {% endcomment %}
-<section class="page-section" id="announcements">
-    {% comment %} <p style="color: red;">DEBUG: Number of announcements: {{ announcements|length }}</p>
-    <p>Test message from view: {{ test_message }}</p>
-    <p style="color: red;">DEBUG: Template is being rendered!</p>
-    <p style="color: red;">DEBUG: Number of announcements: {{ announcements|length }}</p>
-    {% if announcement in announcements%}
-    <h3>HAPPY HAPPY HAPPY</h3>
-    {% else %}
-    <h3>DAMNIT</h3>
-    {% endif %} {% endcomment %}
-
-    {% comment %} {% if user.is_authenticated %}
-    <h5>Welcome {{user.username}}</h5>
-    <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-        <i class="fas fa-sign-out-alt"></i>  Logout
-    </a>
-    <form action="{% url 'logout' %}" method="POST" id="logout">
-        {% csrf_token %}
-        <input type="hidden">
-    </form>
-    {% else %}
-    <a class="nav-link" href="{% url 'login' %}">
-        <i class="fas fa-sign-in-alt"></i>
-         Login
-    </a>
-    {% endif %} {% endcomment %}
+<section class="py-5" id="announcements">
     <h1 class="text-center">Announcements</h1>
-    <div class="row">
+    <br>
+    {% comment %} <div class="row">
         {% for announcement in announcements %}
         <div class="announcement col-md-4 border rounded border-warning border-3 p-3">
             <h3>{{ announcement.title }}</h3>
@@ -248,7 +224,32 @@
         {% empty %}
         <p>No announcements at the moment.</p>
         {% endfor %}
-    </div>
+    </div> {% endcomment %}
+    <div class="container">
+            {% for announcement in announcements %}
+            {# Open a new row every 3 members or on the first member #}
+            {% if forloop.first or forloop.counter0|divisibleby:3 %}
+            <div class="row align-items-start mb-4">
+            {% endif %}
+
+            <div class="col-md-4">
+                <div class="card col-md-4 border rounded border-warning border-3 p-3" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{announcement.title}}</h5>
+                        <p class="card-text text-center">{{announcement.message}}</p>
+                        <p class="card-text text-center">{{announcement.created_at|date:"F j, Y"}}</p>
+                    </div>
+                </div>
+            </div>
+
+            {# Close the row after every 3 cards or at the end #}
+            {% if forloop.counter|divisibleby:3 or forloop.last %}
+            </div>
+            {% endif %}
+            {% empty %}
+            <p>No faculty members found.</p>
+        {% endfor %}
+        </div>
 </section>
 
 {% comment %} <!-- Clients-->

@@ -1,1 +1,98 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Commercial Art Hero Section -->
+<section class="page-section bg-light py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="section-heading text-uppercase mb-4">Commercial Art</h2>
+                <p class="lead text-muted">Creating visual stories that inspire and engage</p>
+                <hr class="my-4">
+                <div class="mb-4">
+                    <h3 class="h4">Course Description</h3>
+                    <p>Commercial Art at BCTHS prepares students for exciting careers in graphic design, advertising, digital media, and visual communication. Students develop creative problem-solving skills while bringing artistic visions to life through industry-standard software and traditional art techniques.</p>
+                    
+                    <p>Throughout this major, you'll master the fundamental principles of design while specializing in commercial applications that communicate powerful messages and create compelling visual experiences for diverse audiences.</p>
+                </div>
+                
+                <div class="d-flex gap-3 mt-4">
+                    <a href="#curriculum" class="btn btn-primary">View Curriculum</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="position-relative">
+                    <!-- Replace with your actual image -->
+                    {% comment %} <img src="{% static 'img/commercial-art.jpg' %}" alt="Students working on commercial art project" class="img-fluid rounded shadow-lg" onerror="this.src='{% static 'img/placeholder-commercial-art.jpg' %}'; this.onerror='';"> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Features Section -->
+<section id="curriculum" class="page-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h3 class="h2">What You'll Learn</h3>
+            <p class="text-muted">Our comprehensive curriculum covers both traditional art foundations and digital design applications</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="mb-3 text-primary">
+                            <i class="fas fa-palette fa-2x"></i>
+                        </div>
+                        <h4 class="card-title h5">Graphic Design</h4>
+                        <p class="card-text">Master the principles of visual hierarchy, typography, and color theory to create compelling logos, branding, and marketing materials.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="mb-3 text-primary">
+                            <i class="fas fa-computer fa-2x"></i>
+                        </div>
+                        <h4 class="card-title h5">Digital Media</h4>
+                        <p class="card-text">Learn industry-standard software including Adobe Creative Suite, creating digital illustrations, animations, and interactive designs.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="mb-3 text-primary">
+                            <i class="fas fa-bullhorn fa-2x"></i>
+                        </div>
+                        <h4 class="card-title h5">Advertising Design</h4>
+                        <p class="card-text">Develop skills in campaign design, brand identity, and visual storytelling that drives consumer engagement and action.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Events -->
+<section class="page-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h3 class="h2 mb-4">Events</h3>
+                <p>Students of our Commercial Art program have many events to show their skills.</p>
+                <ul>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-circle-fill text-primary me-2"></i>Art Shows</li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

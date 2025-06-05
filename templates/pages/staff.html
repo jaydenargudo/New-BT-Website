@@ -3,52 +3,36 @@
 <section class="bg-light py-5" id="faculty_members">
     <h1 class="text-center">Faculty Members</h1>
     <ul>
-        {% comment %} <div class="container">
-            <div class="row align-items-start">
-                {% for member in faculty_members|slice:":3" %}
-                <div class="col">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ member.photo.url }}" class="card-img-top img-thumbnail" alt="{{ member.name }}" style="height: 300px; object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ member.name }}</h5>
-                            <p class="card-text">{{ member.description }}</p>
-                            <p>Phone: {{ member.phone }}</p>
-                            <p>Email: {{ member.email }}</p>
-                        </div>
+        <div class="container">
+            {% for member in faculty_members %}
+            {# Open a new row every 3 members or on the first member #}
+            {% if forloop.first or forloop.counter0|divisibleby:3 %}
+            <div class="row align-items-start mb-4">
+            {% endif %}
+
+            <div class="col-md-4">
+                <div class="card" style="width: 100%;">
+                    <img src="{{ member.photo.url }}" class="card-img-top img-thumbnail" alt="{{ member.first_name }}" style="height: 300px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ member.first_name }} {{member.last_name}}</h5>
+                        <p class="card-text">{{ member.description }}</p>
+                        <p>Phone: {{ member.phone }}</p>
+                        <p>Email: {{ member.email }}</p>
                     </div>
                 </div>
-                {% empty %}
-                <li>No faculty members found.</li>
-                {% endfor %}
             </div>
-        </div> {% endcomment %}
-        <div class="container">
-    {% for member in faculty_members %}
-        {# Open a new row every 3 members or on the first member #}
-        {% if forloop.first or forloop.counter0|divisibleby:3 %}
-        <div class="row align-items-start mb-4">
-        {% endif %}
 
-        <div class="col-md-4">
-            <div class="card" style="width: 100%;">
-                <img src="{{ member.photo.url }}" class="card-img-top img-thumbnail" alt="{{ member.first_name }}" style="height: 300px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ member.first_name }} {{member.last_name}}</h5>
-                    <p class="card-text">{{ member.description }}</p>
-                    <p>Phone: {{ member.phone }}</p>
-                    <p>Email: {{ member.email }}</p>
-                </div>
+            {# Close the row after every 3 cards or at the end #}
+            {% if forloop.counter|divisibleby:3 or forloop.last %}
             </div>
+            {% endif %}
+            {% empty %}
+            <p>No faculty members found.</p>
+        {% endfor %}
         </div>
-
-        {# Close the row after every 3 cards or at the end #}
-        {% if forloop.counter|divisibleby:3 or forloop.last %}
-        </div>
-        {% endif %}
-    {% empty %}
-        <p>No faculty members found.</p>
-    {% endfor %}
-</div>
+        {% comment %} {% for member in faculty_members %}
+        <p>{{member.last_name}}</p>
+        {% endfor %} {% endcomment %}
 
 
 

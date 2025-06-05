@@ -39,7 +39,7 @@ SECRET_KEY = SECRET_KEY
 DEBUG = True
 
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'web-production-90345.up.railway.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'web-production-90345.up.railway.app', 'web-production-dcbe3.up.railway.app']
 
 # Application definition
 
@@ -113,6 +113,17 @@ DATABASES = {
         "HOST": DB_HOST,
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'defaultdb',
+#         'USER': 'avnadmin',
+#         "PASSWORD": DB_PASSWORD,
+#         "PORT": '25683',
+#         "HOST": 'localhost',
+#     }
+
 
 
 
