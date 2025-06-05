@@ -2,10 +2,14 @@
 {% load static %}
 {% block content %}
 {% include "partials/_masthead.html" %}
-<section class="page-section" id="about">
+
+<!-- Add consistent spacing section -->
+<div class="spacer-section py-4 py-md-5"></div>
+
+<section class="page-section py-5" id="about">
     <div class="container">
         <div class="text-start">
-            <h2 class="section-heading text-uppercase">About Us</h2>
+            <h2 class="section-heading text-uppercase mb-4">About Us</h2>
         </div>
         <div class="text-start" style="max-width: 50%; margin-left: 0;">
             <p class="mb-3"><strong>Our Mission:</strong><br>
@@ -19,16 +23,17 @@
         </div>
     </div>
 </section>
+
 <!-- Portfolio Grid-->
-<section class="page-section bg-light" id="portfolio">
+<section class="page-section bg-light py-5" id="portfolio">
     <div class="container">
-        <div class="text-center">
+        <div class="text-center mb-5">
             <h2 class="section-heading text-uppercase">MAJORS</h2>
             <h3 class="section-subheading text-muted">Learn More About Our Majors</h3>
         </div>
-        <div class="row">
+        <div class="row g-4">
             <div class="col-lg-4 col-sm-6">
-                <!-- Portfolio item 6-->
+                <!-- Portfolio item 1-->
                 <div class="portfolio-item">
                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
                         <div class="portfolio-hover">
@@ -42,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="col-lg-4 col-sm-6">
                 <!-- Portfolio item 2-->
                 <div class="portfolio-item">
                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
@@ -57,7 +62,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="col-lg-4 col-sm-6">
                 <!-- Portfolio item 3-->
                 <div class="portfolio-item">
                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
@@ -72,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+            <div class="col-lg-4 col-sm-6">
                 <!-- Portfolio item 4-->
                 <div class="portfolio-item">
                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
@@ -87,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+            <div class="col-lg-4 col-sm-6">
                 <!-- Portfolio item 5-->
                 <div class="portfolio-item">
                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
@@ -118,7 +123,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <!-- Portfolio item 6-->
+                <!-- Portfolio item 7-->
                 <div class="portfolio-item">
                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
                         <div class="portfolio-hover">
@@ -133,7 +138,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <!-- Portfolio item 6-->
+                <!-- Portfolio item 8-->
                 <div class="portfolio-item">
                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
                         <div class="portfolio-hover">
@@ -148,7 +153,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <!-- Portfolio item 6-->
+                <!-- Portfolio item 9-->
                 <div class="portfolio-item">
                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
                         <div class="portfolio-hover">
@@ -165,141 +170,104 @@
         </div>
     </div>
 </section>
+
 <!-- Team-->
-<section class="page-section bg-light" id="team">
+<section class="page-section bg-light py-5" id="team">
     <div class="container">
-        <div class="text-center">
+        <div class="text-center mb-5">
             <h2 class="section-heading text-uppercase">Administration</h2>
             <h3 class="section-subheading text-muted">Learn About Our "Amazing" Administration</h3>
         </div>
-        <br>
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="{% static 'img/dtankard.png'%}" alt="..." />
+        <div class="row justify-content-center g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="team-member text-center">
+                    <img class="mx-auto rounded-circle mb-3" src="{% static 'img/dtankard.png'%}" alt="..." />
                     <h4>David J. Tankard</h4>
-                    <p class="text-muted">Principal</p>
-                    <a class="btn btn-dark btn-social mx-2" href="https://x.com/BTprincipal" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="{% static 'img/team/2.jpg'%}" alt="..." />
-                    <h4>Rosario Cabanilla Alves</h4>
-                    <p class="text-muted">Vice Principal</p>
-                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="{% static 'img/team/3.jpg' %}" alt="..." />
-                    <h4>Kenneth Conlon</h4>
-                    <p class="text-muted">Supervisor</p>
-                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-        </div>
-    </div>
-</section>
-
-{% comment %} Announcements {% endcomment %}
-<section class="py-5" id="announcements">
-    <h1 class="text-center">Announcements</h1>
-    <br>
-    {% comment %} <div class="row">
-        {% for announcement in announcements %}
-        <div class="announcement col-md-4 border rounded border-warning border-3 p-3">
-            <h3>{{ announcement.title }}</h3>
-            <p>{{ announcement.message }}</p>
-            <small>Posted on {{ announcement.created_at|date:"F j, Y" }}</small>
-        </div>
-        {% empty %}
-        <p>No announcements at the moment.</p>
-        {% endfor %}
-    </div> {% endcomment %}
-    <div class="container">
-            {% for announcement in announcements %}
-            {# Open a new row every 3 members or on the first member #}
-            {% if forloop.first or forloop.counter0|divisibleby:3 %}
-            <div class="row align-items-start mb-4">
-            {% endif %}
-
-            <div class="col-md-4">
-                <div class="card col-md-4 border rounded border-warning border-3 p-3" style="width: 100%;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">{{announcement.title}}</h5>
-                        <p class="card-text text-center">{{announcement.message}}</p>
-                        <p class="card-text text-center">{{announcement.created_at|date:"F j, Y"}}</p>
+                    <p class="text-muted mb-3">Principal</p>
+                    <div class="social-links">
+                        <a class="btn btn-dark btn-social mx-2" href="https://x.com/BTprincipal" aria-label="David Tankard Twitter Profile"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="David Tankard Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="David Tankard LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
-
-            {# Close the row after every 3 cards or at the end #}
-            {% if forloop.counter|divisibleby:3 or forloop.last %}
+            <div class="col-lg-4 col-md-6">
+                <div class="team-member text-center">
+                    <img class="mx-auto rounded-circle mb-3" src="{% static 'img/team/2.jpg'%}" alt="..." />
+                    <h4>Rosario Cabanilla Alves</h4>
+                    <p class="text-muted mb-3">Vice Principal</p>
+                    <div class="social-links">
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Rosario Cabanilla Alves Twitter Profile"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Rosario Cabanilla Alves Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Rosario Cabanilla Alves LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
             </div>
-            {% endif %}
-            {% empty %}
-            <p>No faculty members found.</p>
-        {% endfor %}
-        </div>
-</section>
-
-{% comment %} <!-- Clients-->
-<div class="py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{% static 'img/logos/microsoft.svg'%}" alt="..." aria-label="Microsoft Logo" /></a>
-            </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{%static 'img/logos/google.svg' %}" alt="..." aria-label="Google Logo" /></a>
-            </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{% static 'img/logos/facebook.svg' %}" alt="..." aria-label="Facebook Logo" /></a>
-            </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{% static 'img/logos/ibm.svg' %}" alt="..." aria-label="IBM Logo" /></a>
+            <div class="col-lg-4 col-md-6">
+                <div class="team-member text-center">
+                    <img class="mx-auto rounded-circle mb-3" src="{% static 'img/team/3.jpg' %}" alt="..." />
+                    <h4>Kenneth Conlon</h4>
+                    <p class="text-muted mb-3">Supervisor</p>
+                    <div class="social-links">
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Kenneth Conlon Twitter Profile"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Kenneth Conlon Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Kenneth Conlon LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div> {% endcomment %}
-<!-- Contact-->
-<section class="page-section" id="contact">
+</section>
+
+<!-- Announcements -->
+<section class="py-5" id="announcements">
     <div class="container">
-        <div class="text-center">
+        <div class="text-center mb-5">
+            <h2 class="section-heading text-uppercase">Announcements</h2>
+        </div>
+        <div class="row g-4">
+            {% for announcement in announcements %}
+                <div class="col-md-4">
+                    <div class="card border-warning border-3 h-100">
+                        <div class="card-body text-center d-flex flex-column">
+                            <h5 class="card-title">{{announcement.title}}</h5>
+                            <p class="card-text flex-grow-1">{{announcement.message}}</p>
+                            <small class="text-muted">{{announcement.created_at|date:"F j, Y"}}</small>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="text-center">No announcements at the moment.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact-->
+<section class="page-section py-5" id="contact">
+    <div class="container">
+        <div class="text-center mb-5">
             <h2 class="section-heading text-uppercase">Contact Us</h2>
             <h3 class="section-subheading text-muted">P: 201-343-6000</h3>
         </div>
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- * * SB Forms Contact Form * *-->
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- This form is pre-integrated with SB Forms.-->
-        <!-- To make this form functional, sign up at-->
-        <!-- https://startbootstrap.com/solution/contact-forms-->
-        <!-- to get an API token!-->
+        <!-- Contact Form -->
         <form id="contactForm" data-sb-form-api-token="API_TOKEN">
             <div class="row align-items-stretch mb-5">
                 <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <!-- Name input-->
                         <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />
                         <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <!-- Email address input-->
                         <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />
                         <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                         <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                     </div>
-                    <div class="form-group mb-md-0">
+                    <div class="form-group mb-3 mb-md-0">
                         <!-- Phone number input-->
                         <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />
                         <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
@@ -308,15 +276,12 @@
                 <div class="col-md-6">
                     <div class="form-group form-group-textarea mb-md-0">
                         <!-- Message input-->
-                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>
+                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required" style="height: 100%;"></textarea>
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                     </div>
                 </div>
             </div>
             <!-- Submit success message-->
-            <!---->
-            <!-- This is what your users will see when the form-->
-            <!-- has successfully submitted-->
             <div class="d-none" id="submitSuccessMessage">
                 <div class="text-center text-white mb-3">
                     <div class="fw-bolder">Form submission successful!</div>
@@ -326,35 +291,13 @@
                 </div>
             </div>
             <!-- Submit error message-->
-            <!---->
-            <!-- This is what your users will see when there is-->
-            <!-- an error submitting the form-->
             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
             <!-- Submit Button-->
             <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>
         </form>
     </div>
 </section>
-<!-- Footer-->
- {% comment %} <div>
 
-     <footer class="footer py-4">
-         <div class="container">
-             <div class="row align-items-center">
-                 <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2023</div>
-                 <div class="col-lg-4 my-3 my-lg-0">
-                     <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                     <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                     <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <div class="col-lg-4 text-lg-end">
-                        <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
-                        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div> {% endcomment %}
 <!-- Portfolio Modals-->
 <!-- Portfolio item 1 modal popup-->
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
@@ -565,4 +508,5 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock content %}

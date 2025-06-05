@@ -12,6 +12,19 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+
+# from supabase import create_client
+
+# SUPABASE_URL = os.getenv("SUPABASE_URL")
+# SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+# # Ensure SUPABASE_URL is not None
+# if not SUPABASE_URL:
+#     raise ValueError("SUPABASE_URL is not set in environment variables")
+# # Create Supabase Client
+# supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+# # Correct MEDIA_URL format
+# MEDIA_URL = f"{SUPABASE_URL}/storage/v1/object/public/media/"
+
 # import dj_database_url
 from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
