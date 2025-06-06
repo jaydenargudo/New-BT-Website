@@ -37,14 +37,23 @@ class UploadedFile(models.Model):
         super().save(*args, **kwargs)
 
 # Create your models here.
+from django.conf import settings
+
 class Faculty(models.Model):
-    first_name = models.CharField(max_length = 100, blank=True, null=True)
-    last_name = models.CharField(max_length = 100, blank=True, null=True)
+    first_name = models.CharField(max_length=100, blank=True, null=True)
+    last_name = models.CharField(max_length=100, blank=True, null=True)
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True, null=True)
-    description = models.TextField(blank = True)
-    phone = models.CharField(max_length = 20)
-    email = models.CharField(max_length = 50)
-    is_mvp = models.BooleanField(default = False)
-    
+    description = models.TextField(blank=True)
+    phone = models.CharField(max_length=20)
+    email = models.CharField(max_length=50)
+    is_mvp = models.BooleanField(default=False)
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+    @property
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'name'):
+            # Use the SUPABASE_URL env variable you defined in settings
+            return f"{settings.MEDIA_URL}{self.photo.name}"
+        return None
