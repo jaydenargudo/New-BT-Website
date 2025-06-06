@@ -1,6 +1,5 @@
 from django.db import models
 
-from django.db import models
 import os
 from supabase import create_client
 
