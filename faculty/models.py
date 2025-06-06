@@ -47,13 +47,13 @@ class Faculty(models.Model):
     phone = models.CharField(max_length=20)
     email = models.CharField(max_length=50)
     is_mvp = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"{self.first_name} {self.last_name}"
-
+    
+    
     @property
     def photo_url(self):
         if self.photo and hasattr(self.photo, 'name'):
-            # Use the SUPABASE_URL env variable you defined in settings
-            return f"{settings.MEDIA_URL}{self.photo.name}"
+            return f"{settings.SUPABASE_URL}/storage/v1/object/public/media/{self.photo.name}"
         return None
+    
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
